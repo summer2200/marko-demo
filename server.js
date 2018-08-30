@@ -4,7 +4,7 @@ var express = require('express');
 
 var app = express();
 
-app.get('/', require('./src/pages/home'));
+app.get('/', require('./src/pages/home')); //require the page controller
 app.get('/detail', require('./src/pages/detail'));
 app.get('/search', require('./src/pages/search'));
 

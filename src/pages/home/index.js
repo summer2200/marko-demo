@@ -1,4 +1,4 @@
-//use to export the page controller
+//home page controller
 var template = require('./template.marko');
 
 module.exports = function(req, res) {
@@ -8,3 +8,10 @@ module.exports = function(req, res) {
     // res.write('Hello world!');
     // res.end();
 };
+
+
+// class {
+//     search() {
+//         console.log('searching');
+//     }
+// }
