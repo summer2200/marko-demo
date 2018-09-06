@@ -1,0 +1,52 @@
+import service from './service';
+
+
+<lasso-page package-path="../../browser.json"/>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Marko Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <lasso-head/>
+</head>
+<body>
+      <div>${service.getList()}</div>
+    <div class="container-fluid">
+        <div class="alert alert-success" role="alert">
+            ${data.count} results of '${data.searchText}'
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small>Donec id elit non mi porta.</small>
+                    </a>
+                    </div>
+            </div>
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+            </nav>
+    </div>
+    <lasso-body/>
+</body>
+</html>

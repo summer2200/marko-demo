@@ -1,3 +1,17 @@
 .home-title {
     color: red;
 }
+.pointer {
+    cursor: pointer;
+}
+.lg-l-r-pd {
+    padding-left: 4rem!important;
+    padding-right: 4rem!important;
+}
+.flex-box {
+    display: flex;
+}
+
+.stretch-item {
+    align-self: stretch;
+}

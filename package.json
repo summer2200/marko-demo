@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "marko-starter server",
+    "build": "NODE_ENV=production marko-starter build",
+    "serve-static": "NODE_ENV=production marko-starter serve-static",
+    "lint": "eslint src/",
+    "test": "npm run lint",
+    "prettier": "prettier src/**/*.{js,css,less} *.js --write"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +20,17 @@
     "jquery": "^3.3.1",
     "lasso": "^3.2.6",
     "lasso-marko": "^2.4.4",
-    "marko": "^4.12.5",
+    "marko": "^4.5.6",
+    "marko-starter": "^2.0.4",
     "popper.js": "^1.14.4"
+  },
+  "browser": {
+    "src/routes/detail/index.js": "src/routes/detail/index.browser.js",
+    "src/client.js": "src/client.browser.js",
+    "src/components/app-nav/template.js": "src/components/app-nav/template.browser.js",
+    "src/pages/home/template.js": "src/pages/home/template.browser.js",
+    "src/routes/detail/template.js": "src/routes/detail/template.browser.js",
+    "src/routes/home/template.js": "src/routes/home/template.browser.js",
+    "src/routes/search/template.js": "src/routes/search/template.browser.js"
   }
 }
