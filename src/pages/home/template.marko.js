@@ -9,7 +9,9 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_helpers = require("marko/src/runtime/html/helpers"),
     marko_loadTag = marko_helpers.t,
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
-    app_nav_tag = marko_loadTag(require("../../components/app-nav/renderer")),
+    marko_loadTemplate = require("marko/src/runtime/helper-loadTemplate"),
+    app_nav_template = marko_loadTemplate(require.resolve("../../components/app-nav/app-nav.marko")),
+    app_nav_tag = marko_loadTag(app_nav_template),
     marko_styleAttr = marko_helpers.sa,
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
@@ -64,7 +66,7 @@ marko_template.meta = {
     id: "/marko-demo$1.0.0/src/pages/home/template.marko",
     tags: [
       "marko/src/components/taglib/component-globals-tag",
-      "../../components/app-nav/renderer",
+      "../../components/app-nav/app-nav.marko",
       "marko/src/components/taglib/init-components-tag",
       "marko/src/taglibs/async/await-reorderer-tag"
     ]

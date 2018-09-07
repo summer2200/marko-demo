@@ -1,6 +1,38 @@
+<!-- class {
+
+  onCreate() {
+    this.state = {
+      count: 10
+    };
+  }
+  onButtonClick() {
+    alert(`Hello!`);
+  }
+  increment() {
+    this.state.count++;
+    alert(this.state);
+    console.log(this.state);
+  }
+} -->
+
+$ {
+  var navTitle = 'Hot!';
+  var test = function() {
+    alert('test');
+    console.log('test');
+  };
+}
+
 <div class="app-nav">
+<button on-click('test')>test</button>
+<p>${component.increment()}</p>
+<div>
+<p if(state.show)>${sum()}</p>
+<p else>no numbers</p>
+</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">${data.name}</a>
+    <!-- <a class="navbar-brand" href="#">${data.name}</a> -->
+    <a class={'navbar-brand': true} href="#">${navTitle}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
