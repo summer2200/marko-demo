@@ -16,6 +16,33 @@ pages/client.js - client side rendering logic, a standard node.js file, can impo
 ## lasso - bundler
 
 
-<lasso-page package-path="./browser.json" /> - to invoke lasso
-<lasso-head/> - to use all the css dependencies, put in <head> tag
-<lasso-body/> - to use all the script dependencies, put in <body> tag
+`<lasso-page package-path="./browser.json" />` - to invoke lasso
+`<lasso-head/>` - to use all the css dependencies, put in `<head>` tag
+`<lasso-body/>` - to use all the script dependencies, put in `<body>` tag
+  
+ 
+ 
+ ## Problems
+ 1. Installed marko-starter, create routes folder, create 'test/index.marko' and run the code, hit '/test' got 404.
+ 2. Write codes like this in template.marko under any component folder, not working(seems click event is not working): 
+ 
+ ```
+ class {
+  onCreate() {
+    this.state = { count:0 };
+  }
+  increment() {
+    this.state.count++;
+  }
+ }
+
+ <div.count>
+   ${state.count}
+ </div>
+ <button.example-button on-click('increment')>
+   Click me!
+ </button>
+ ```
+ 
+ 3. install marko-cli got many errors, this works but looks wired: https://github.com/marko-js/marko-cli/issues/88
+ 
