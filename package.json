@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "marko-starter server",
+    "start": "node server",
     "build": "NODE_ENV=production marko-starter build",
     "serve-static": "NODE_ENV=production marko-starter serve-static",
     "lint": "eslint src/",
-    "test": "npm run lint",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "prettier": "prettier src/**/*.{js,css,less} *.js --write"
   },
   "author": "",
@@ -22,7 +22,9 @@
     "lasso-marko": "^2.4.4",
     "marko": "^4.5.6",
     "marko-starter": "^2.0.4",
-    "popper.js": "^1.14.4"
+    "mocha": "^5.2.0",
+    "popper.js": "^1.14.4",
+    "sinon": "^6.2.0"
   },
   "browser": {
     "src/routes/detail/index.js": "src/routes/detail/index.browser.js",

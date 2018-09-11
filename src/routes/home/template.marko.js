@@ -16,21 +16,42 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     lasso_head_tag = marko_loadTag(require("@lasso/marko-taglib/taglib/head-tag")),
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
     app_nav_tag = marko_loadTag(require("../../components/app-nav/renderer")),
+    marko_forEach = marko_helpers.f,
+    marko_escapeXml = marko_helpers.x,
     marko_styleAttr = marko_helpers.sa,
     lasso_body_tag = marko_loadTag(require("@lasso/marko-taglib/taglib/body-tag")),
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
 
-var base = 2;
-function sum(a, b) {
-    return base + a + b;
-};
-function search() {
-  console.log('searching');
-};
-
 function render(input, out, __component, component, state) {
   var data = input;
+
+  var cardStyle = {width:'15rem', display:'inline-block', marginRight: '1rem'};
+  
+  function getList() {
+      return [{
+          title: "Kin",
+          type: "102 min - Action | Sci-Fi",
+          intro: "Chased by a vengeful criminal, the feds and a gang of otherworldly soldiers.",
+          actors: ['Chris Weitz', 'Oscar Isaac']
+      },
+      {
+          title: "Operation Finale",
+          type: "122 min - Drama | History",
+          intro: "A team of secret agents set out to track down the Nazi officer who masterminded the Holocaust.",
+          actors: ['Jonathan Baker', 'Josh Baker']
+      },
+      {
+          title: "The Little Stranger",
+          type: "111 min - Drama | Horror",
+          intro: "After a doctor is called to visit a crumbling manor, strange things begin to occur.",
+          actors: ['Leny Abrah', 'Donall Gleson']
+      }];
+  }
+  
+  function search() {
+    console.log('searching');
+  };
 
   lasso_page_tag({
       packagePath: ___browser_json,
@@ -52,12 +73,23 @@ function render(input, out, __component, component, state) {
       name: "Hot Movies"
     }, out, __component, "9");
 
-  out.w("<div class=\"jumbotron jumbotron-fluid\"><div class=\"container\"><a href=\"/detail\" class=\"display-4 home-title\">Ant-Man and the Wasp</a><p class=\"lead\">As Scott Lang balances being both a Super Hero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.</p></div></div><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-sm-8\" id=\"left\"><h2>Hot Movies</h2><div class=\"card\"" +
-    marko_styleAttr({
-      width: "18rem",
-      display: "inline-block"
-    }) +
-    "><div class=\"card-body\"><h5 class=\"card-title\">Kin (2018)</h5><h6 class=\"card-subtitle mb-2 text-muted\">102 min - Action | Sci-Fi</h6><p class=\"card-text\">Chased by a vengeful criminal, the feds and a gang of otherworldly soldiers, a recently released ex-con and brother.</p><a href=\"#\" class=\"card-link\">Chris Weitz</a><a href=\"#\" class=\"card-link\"> Oscar Isaac</a></div></div><div class=\"card\" style=\"width: 18rem; display: inline-block;\"><div class=\"card-body\"><h5 class=\"card-title\">Operation Finale (2018) </h5><h6 class=\"card-subtitle mb-2 text-muted\">122 min - Drama | History</h6><p class=\"card-text\">A team of secret agents set out to track down the Nazi officer who masterminded the Holocaust.</p><a href=\"#\" class=\"card-link\">Jonathan Baker</a><a href=\"#\" class=\"card-link\">Josh Baker</a></div></div><div class=\"card\" style=\"width: 18rem; display: inline-block;\"><div class=\"card-body\"><h5 class=\"card-title\">The Little Stranger (2018) </h5><h6 class=\"card-subtitle mb-2 text-muted\">111 min - Drama | Horror</h6><p class=\"card-text\">After a doctor is called to visit a crumbling manor, strange things begin to occur.</p><a href=\"#\" class=\"card-link\">Lenny Abrah</a><a href=\"#\" class=\"card-link\">Donall Gleeson</a></div></div></div><div class=\"col-sm-4\" id=\"right\"><h2>Today's Tops</h2><ul class=\"list-group\"><li class=\"list-group-item d-flex justify-content-between align-items-center\">The Meg (2018) <span class=\"badge badge-warning badge-pill\">9.0</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">Crazy Rich Asians (2018) <span class=\"badge badge-warning badge-pill\">8.9</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">To All the Boys I've Loved Before (2018) <span class=\"badge badge-warning badge-pill\">7.5</span></li></ul></div></div></div><footer" +
+  out.w("<div class=\"jumbotron jumbotron-fluid\"><div class=\"container\"><a href=\"/detail\" class=\"display-4 home-title\">Ant-Man and the Wasp</a><p class=\"lead\">As Scott Lang balances being both a Super Hero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.</p></div></div><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-sm-8\" id=\"left\"><h2>Hot Movies</h2>");
+
+  marko_forEach(getList(), function(item) {
+    out.w("<div class=\"card\"" +
+      marko_styleAttr(cardStyle) +
+      "><div class=\"card-body\"><h5 class=\"card-title\">" +
+      marko_escapeXml(item.title) +
+      " </h5><h6 class=\"card-subtitle mb-2 text-muted\">" +
+      marko_escapeXml(item.type) +
+      "</h6><p class=\"card-text\">" +
+      marko_escapeXml(item.intro) +
+      "</p><a href=\"#\" class=\"card-link\">" +
+      marko_escapeXml(item.actors) +
+      "</a></div></div>");
+  });
+
+  out.w("</div><div class=\"col-sm-4\" id=\"right\"><h2>Today's Tops</h2><ul class=\"list-group\"><li class=\"list-group-item d-flex justify-content-between align-items-center\">The Meg (2018) <span class=\"badge badge-warning badge-pill\">9.0</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">Crazy Rich Asians (2018) <span class=\"badge badge-warning badge-pill\">8.9</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">To All the Boys I've Loved Before (2018) <span class=\"badge badge-warning badge-pill\">7.5</span></li></ul></div></div></div><footer" +
     marko_styleAttr({
       marginTop: "2rem",
       backgroundColor: "#f2f2f2",
@@ -65,13 +97,13 @@ function render(input, out, __component, component, state) {
     }) +
     "><ul class=\"nav justify-content-center\"><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">Amazon Video</a></li><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">Prime Video</a></li><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">Amazon Germany</a></li><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">DPReview</a></li></ul></footer>");
 
-  lasso_body_tag({}, out, __component, "58");
+  lasso_body_tag({}, out, __component, "43");
 
-  lasso_body_tag({}, out, __component, "59");
+  lasso_body_tag({}, out, __component, "44");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "60");
+  await_reorderer_tag({}, out, __component, "45");
 
   out.w("</body></html>");
 }

@@ -1,8 +1,30 @@
 static {
     var base = 2;
-    function sum(a, b) {
-        return base + a + b;
+    function getList() {
+        return [{
+            title: "Kin (2018)",
+            type: "102 min - Action | Sci-Fi",
+            intro: "Chased by a vengeful criminal, the feds and a gang of otherworldly soldiers.",
+            actors: ['Chris Weitz', 'Oscar Isaac']
+        },
+        {
+            title: "Operation Finale (2018)",
+            type: "122 min - Drama | History",
+            intro: "A team of secret agents set out to track down the Nazi officer who masterminded the Holocaust.",
+            actors: ['Jonathan Baker', 'Josh Baker']
+        },
+        {
+            title: "The Little Stranger (2018)",
+            type: "111 min - Drama | Horror",
+            intro: "After a doctor is called to visit a crumbling manor, strange things begin to occur.",
+            actors: ['Lenny Abrah', '>Donall Gleeson']
+        }];
     };
+    
+}
+
+$ {
+    var cardStyle={width:18rem, display:inline-block};
     function search() {
       console.log('searching');
     };
@@ -37,33 +59,15 @@ static {
     <div class="row">
         <div class="col-sm-8" id="left">
             <h2>Hot Movies</h2>
-            <div class="card" style={width:'18rem', display:'inline-block'}>
-                <div class="card-body">
-                    <h5 class="card-title">Kin (2018)</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">102 min - Action | Sci-Fi</h6>
-                    <p class="card-text">Chased by a vengeful criminal, the feds and a gang of otherworldly soldiers, a recently released ex-con and brother.</p>
-                    <a href="#" class="card-link">Chris Weitz</a>
-                    <a href="#" class="card-link"> Oscar Isaac</a>
-                </div>
-                </div>
-                <div class="card" style="width: 18rem; display: inline-block;">
-                <div class="card-body">
-                    <h5 class="card-title">Operation Finale (2018) </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">122 min - Drama | History</h6>
-                    <p class="card-text">A team of secret agents set out to track down the Nazi officer who masterminded the Holocaust.</p>
-                    <a href="#" class="card-link">Jonathan Baker</a>
-                    <a href="#" class="card-link">Josh Baker</a>
-                </div>
-                </div>
-                <div class="card" style="width: 18rem; display: inline-block;">
-                <div class="card-body">
+            <div class="card" style=${cardStyle}>
+                <div class="card-body" for(item in getList())>
                     <h5 class="card-title">The Little Stranger (2018) </h5>
                     <h6 class="card-subtitle mb-2 text-muted">111 min - Drama | Horror</h6>
                     <p class="card-text">After a doctor is called to visit a crumbling manor, strange things begin to occur.</p>
                     <a href="#" class="card-link">Lenny Abrah</a>
                     <a href="#" class="card-link">Donall Gleeson</a>
                 </div>
-                </div>
+            </div>
         </div>
         <div class="col-sm-4" id="right">
             <h2>Today's Tops</h2>
