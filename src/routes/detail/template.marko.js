@@ -2,6 +2,16 @@
 "use strict";
 
 var marko_template = module.exports = require("marko/src/html").t(__filename),
+    marko_component = {
+        onCreate: function() {
+          this.state = {
+              showTab1: true
+            };
+        },
+        showTab: function(tabNo) {
+          this.state.showTab1 = tabNo.toString() === "1" ? true : false;
+        }
+      },
     components_helpers = require("marko/src/components/helpers"),
     marko_registerComponent = components_helpers.rc,
     marko_componentType = marko_registerComponent("/marko-demo$1.0.0/src/routes/detail/template.marko", function() {
@@ -70,27 +80,40 @@ function render(input, out, __component, component, state) {
           "2"
         ])
     }, false) +
-    ">Cast</a></li></ul><div class=\"row justify-content-sm-center\"><div class=\"col-sm-8\"><p class=\"text-justify\">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis piros Afros. Petierunt uti sibi concilium totius Galliae in diem certam indicere. Cras mattis iudicium purus sit amet fermentum.</p></div></div>");
+    ">Cast</a></li></ul>");
 
-  lasso_body_tag({}, out, __component, "33");
+  if (state.showTab1) {
+    out.w("<div class=\"row justify-content-sm-center\"><div class=\"col-sm-8\"><p class=\"text-justify\">This is tab 1</p></div></div>");
+  } else {
+    out.w("<div class=\"row justify-content-sm-center\"><div class=\"col-sm-8\"><p class=\"text-justify\">This is tab2.</p></div></div>");
+  }
 
-  lasso_body_tag({}, out, __component, "34");
+  out.w("<form name=\"detail\" action=\"/detail\" method=\"post\"><button type=\"submit\">submit</button></form>");
+
+  lasso_body_tag({}, out, __component, "38");
+
+  lasso_body_tag({}, out, __component, "39");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "35");
+  await_reorderer_tag({}, out, __component, "40");
 
   out.w("</body></html>");
 }
 
 marko_template._ = marko_renderer(render, {
-    ___implicit: true,
     ___type: marko_componentType
-  });
+  }, marko_component);
 
-marko_template.Component = marko_defineComponent({}, marko_template._);
+marko_template.Component = marko_defineComponent(marko_component, marko_template._);
 
 marko_template.meta = {
+    deps: [
+      {
+          type: "require",
+          path: "./template.marko"
+        }
+    ],
     tags: [
       "@lasso/marko-taglib/taglib/config-tag",
       "@lasso/marko-taglib/taglib/head-tag",

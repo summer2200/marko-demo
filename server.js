@@ -26,6 +26,10 @@ app.get('/detail', function(req, res) {
     });
 });
 
+app.post('/detail', function(req, res) {
+    res.send('post response to detail page.');
+});
+
 app.listen(3000, function() {
     console.log('listening on port 3000');
 });
