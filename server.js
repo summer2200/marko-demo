@@ -11,8 +11,15 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 var detailTpl = require('./src/routes/detail/template.marko');
+var testTpl = require('./src/client.marko');
 
 app.use(require('lasso/middleware').serveStatic());
+
+app.get('/test',function(req, res) {
+    res.marko(testTpl, {
+
+    });
+}); //require the page controller
 
 app.get('/', require('./src/routes/home')); //require the page controller
 app.get('/search', require('./src/routes/search'));

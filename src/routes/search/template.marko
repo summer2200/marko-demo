@@ -1,19 +1,9 @@
-import service from './service';
-
-
-<lasso-page package-path="../../browser.json"/>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Marko Demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <lasso-head/>
-</head>
-<body>
-      <div>${service.getList()}</div>
-    <div class="container-fluid">
+<site-layout>
+    <@title>
+        Search
+    </@title>
+    <@content>
+        <div class="container-fluid">
         <div class="alert alert-success" role="alert">
             ${data.count} results of '${data.searchText}'
         </div>
@@ -46,7 +36,6 @@ import service from './service';
                 </li>
             </ul>
             </nav>
-    </div>
-    <lasso-body/>
-</body>
-</html>
+        </div>
+    </@content>
+</site-layout>

@@ -9,19 +9,15 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     }),
     marko_renderer = components_helpers.r,
     marko_defineComponent = components_helpers.c,
-    ___browser_json = require.resolve("../../browser.json"),
+    hasRenderBodyKey = Symbol.for("hasRenderBody"),
     marko_helpers = require("marko/src/runtime/html/helpers"),
-    marko_loadTag = marko_helpers.t,
-    lasso_page_tag = marko_loadTag(require("@lasso/marko-taglib/taglib/config-tag")),
-    lasso_head_tag = marko_loadTag(require("@lasso/marko-taglib/taglib/head-tag")),
-    component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
-    app_nav_tag = marko_loadTag(require("../../components/app-nav/renderer")),
     marko_forEach = marko_helpers.f,
     marko_escapeXml = marko_helpers.x,
     marko_styleAttr = marko_helpers.sa,
-    lasso_body_tag = marko_loadTag(require("@lasso/marko-taglib/taglib/body-tag")),
-    init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
-    await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
+    marko_loadTemplate = require("marko/src/runtime/helper-loadTemplate"),
+    site_layout_template = marko_loadTemplate(require.resolve("../../components/site-layout/template.marko")),
+    marko_loadTag = marko_helpers.t,
+    site_layout_tag = marko_loadTag(site_layout_template);
 
 function render(input, out, __component, component, state) {
   var data = input;
@@ -48,64 +44,36 @@ function render(input, out, __component, component, state) {
           actors: ['Leny Abrah', 'Donall Gleson']
       }];
   }
-  
-  function search() {
-    console.log('searching');
-  };
 
-  lasso_page_tag({
-      packagePath: ___browser_json,
-      dirname: __dirname,
-      filename: __filename
-    }, out);
+  site_layout_tag({
+      title: {
+          renderBody: function renderBody(out) {
+            out.w("Home");
+          }
+        },
+      content: {
+          renderBody: function renderBody(out) {
+            out.w("<div class=\"jumbotron jumbotron-fluid\"><div class=\"container\"><a href=\"/detail\" class=\"display-4 home-title\">Ant-Man and the Wasp</a><p class=\"lead\">As Scott Lang balances being both a Super Hero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.</p></div></div><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-sm-8\" id=\"left\"><h2>Hot Movies</h2>");
 
-  out.w("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Marko Demo</title>");
+            marko_forEach(getList(), function(item) {
+              out.w("<div class=\"card\"" +
+                marko_styleAttr(cardStyle) +
+                "><div class=\"card-body\"><h5 class=\"card-title\">" +
+                marko_escapeXml(item.title) +
+                " </h5><h6 class=\"card-subtitle mb-2 text-muted\">" +
+                marko_escapeXml(item.type) +
+                "</h6><p class=\"card-text\">" +
+                marko_escapeXml(item.intro) +
+                "</p><a href=\"#\" class=\"card-link\">" +
+                marko_escapeXml(item.actors) +
+                "</a></div></div>");
+            });
 
-  lasso_head_tag({}, out, __component, "6");
-
-  lasso_head_tag({}, out, __component, "7");
-
-  out.w("</head><body>");
-
-  component_globals_tag({}, out);
-
-  app_nav_tag({
-      name: "Hot Movies"
-    }, out, __component, "9");
-
-  out.w("<div class=\"jumbotron jumbotron-fluid\"><div class=\"container\"><a href=\"/detail\" class=\"display-4 home-title\">Ant-Man and the Wasp</a><p class=\"lead\">As Scott Lang balances being both a Super Hero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.</p></div></div><div class=\"container-fluid\"><div class=\"row\"><div class=\"col-sm-8\" id=\"left\"><h2>Hot Movies</h2>");
-
-  marko_forEach(getList(), function(item) {
-    out.w("<div class=\"card\"" +
-      marko_styleAttr(cardStyle) +
-      "><div class=\"card-body\"><h5 class=\"card-title\">" +
-      marko_escapeXml(item.title) +
-      " </h5><h6 class=\"card-subtitle mb-2 text-muted\">" +
-      marko_escapeXml(item.type) +
-      "</h6><p class=\"card-text\">" +
-      marko_escapeXml(item.intro) +
-      "</p><a href=\"#\" class=\"card-link\">" +
-      marko_escapeXml(item.actors) +
-      "</a></div></div>");
-  });
-
-  out.w("</div><div class=\"col-sm-4\" id=\"right\"><h2>Today's Tops</h2><ul class=\"list-group\"><li class=\"list-group-item d-flex justify-content-between align-items-center\">The Meg (2018) <span class=\"badge badge-warning badge-pill\">9.0</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">Crazy Rich Asians (2018) <span class=\"badge badge-warning badge-pill\">8.9</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">To All the Boys I've Loved Before (2018) <span class=\"badge badge-warning badge-pill\">7.5</span></li></ul></div></div></div><footer" +
-    marko_styleAttr({
-      marginTop: "2rem",
-      backgroundColor: "#f2f2f2",
-      padding: "2rem 0"
-    }) +
-    "><ul class=\"nav justify-content-center\"><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">Amazon Video</a></li><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">Prime Video</a></li><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">Amazon Germany</a></li><li class=\"nav-item\"><a class=\"nav-link text-secondary\" href=\"#\">DPReview</a></li></ul></footer>");
-
-  lasso_body_tag({}, out, __component, "43");
-
-  lasso_body_tag({}, out, __component, "44");
-
-  init_components_tag({}, out);
-
-  await_reorderer_tag({}, out, __component, "45");
-
-  out.w("</body></html>");
+            out.w("</div><div class=\"col-sm-4\" id=\"right\"><h2>Today's Tops</h2><ul class=\"list-group\"><li class=\"list-group-item d-flex justify-content-between align-items-center\">The Meg (2018) <span class=\"badge badge-warning badge-pill\">9.0</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">Crazy Rich Asians (2018) <span class=\"badge badge-warning badge-pill\">8.9</span></li><li class=\"list-group-item d-flex justify-content-between align-items-center\">To All the Boys I've Loved Before (2018) <span class=\"badge badge-warning badge-pill\">7.5</span></li></ul></div></div></div>");
+          }
+        },
+      [hasRenderBodyKey]: true
+    }, out, __component, "0");
 }
 
 marko_template._ = marko_renderer(render, {
@@ -117,12 +85,6 @@ marko_template.Component = marko_defineComponent({}, marko_template._);
 
 marko_template.meta = {
     tags: [
-      "@lasso/marko-taglib/taglib/config-tag",
-      "@lasso/marko-taglib/taglib/head-tag",
-      "marko/src/components/taglib/component-globals-tag",
-      "../../components/app-nav/renderer",
-      "@lasso/marko-taglib/taglib/body-tag",
-      "marko/src/components/taglib/init-components-tag",
-      "marko/src/taglibs/async/await-reorderer-tag"
+      "../../components/site-layout/template.marko"
     ]
   };

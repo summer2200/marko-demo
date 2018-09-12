@@ -21,88 +21,53 @@ $ {
             actors: ['Leny Abrah', 'Donall Gleson']
         }];
     }
-
-    function search() {
-      console.log('searching');
-    };
-    
 }
 
-<lasso-page package-path="../../browser.json"/>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<site-layout>
+    <@title>
+        Home
+    </@title>
+    <@content>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <a href="/detail" class="display-4 home-title">Ant-Man and the Wasp</a>
+            <p class="lead">As Scott Lang balances being both a Super Hero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.</p>
+            </div>
+        </div>
 
-    <title>Marko Demo</title>
-    
-    <lasso-head/>
-</head>
-<body>
-
-  
-  <app-nav name="Hot Movies"/>
-
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <a href="/detail" class="display-4 home-title">Ant-Man and the Wasp</a>
-      <p class="lead">As Scott Lang balances being both a Super Hero and a father, Hope van Dyne and Dr. Hank Pym present an urgent new mission that finds the Ant-Man fighting alongside The Wasp to uncover secrets from their past.</p>
-    </div>
-  </div>
-
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-8" id="left">
-            <h2>Hot Movies</h2>
-            <div class="card" style=cardStyle  for(item in getList())>
-                <div class="card-body">
-                    <h5 class="card-title">${item.title} </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${item.type}</h6>
-                    <p class="card-text">${item.intro}</p>
-                    <a href="#" class="card-link">${item.actors}</a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8" id="left">
+                    <h2>Hot Movies</h2>
+                    <div class="card" style=cardStyle  for(item in getList())>
+                        <div class="card-body">
+                            <h5 class="card-title">${item.title} </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">${item.type}</h6>
+                            <p class="card-text">${item.intro}</p>
+                            <a href="#" class="card-link">${item.actors}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4" id="right">
+                    <h2>Today's Tops</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            The Meg (2018)
+                            <span class="badge badge-warning badge-pill">9.0</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Crazy Rich Asians (2018)
+                            <span class="badge badge-warning badge-pill">8.9</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                To All the Boys I've Loved Before (2018)
+                            <span class="badge badge-warning badge-pill">7.5</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-sm-4" id="right">
-            <h2>Today's Tops</h2>
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    The Meg (2018)
-                    <span class="badge badge-warning badge-pill">9.0</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Crazy Rich Asians (2018)
-                    <span class="badge badge-warning badge-pill">8.9</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    	To All the Boys I've Loved Before (2018)
-                    <span class="badge badge-warning badge-pill">7.5</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-  </div>
 
-  <footer style={marginTop: '2rem', backgroundColor: '#f2f2f2', padding: '2rem 0'}>
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#">Amazon Video</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#">Prime Video</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#">Amazon Germany</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#">DPReview</a>
-      </li>
-    </ul>
-  </footer>
-
-  <lasso-body/>
-
-</body>
-</html>
+        
+    </@content>
+</site-layout>

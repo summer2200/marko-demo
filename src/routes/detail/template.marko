@@ -9,21 +9,13 @@ class {
         this.state.showTab1 = tabNo.toString() === '1' ? true : false;
     }
 }
-<lasso-page package-path="../../browser.json"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Details</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <lasso-head/>
-</head>
-<body>
-      
-      <app-nav/>
-      <div class="container-fluid">
+<site-layout>
+    <@title>
+        Detail
+    </@title>
+    <@content>
+         <div class="container-fluid">
           <div class="row p-5">
               <div class="col-sm-4 flex-box">
                 <div class="card text-white bg-success m-0 stretch-item">
@@ -73,12 +65,8 @@ class {
         <form name="detail" action="/detail" method="post">
             <button type="submit">submit</button>
         </form>
-
-        <lasso-body/>
-</body>
-</html>
-
-
+    </@content>
+</site-layout>
 
 
 
